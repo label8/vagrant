@@ -7,23 +7,27 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
-  config.vm.define :deploy do |node|
+  config.vm.define :front do |node|
     config.vm.box = "eighty8/ubuntu16.04-min"
     node.vm.network :forwarded_port, guest: 22, host: 2010, id: "ssh"
     node.vm.network "private_network", ip: "192.168.1.10"
   end
 
+  config.vm.define :deploy do |node|
+    config.vm.box = "eighty8/ubuntu16.04-min"
+    node.vm.network :forwarded_port, guest: 22, host: 2015, id: "ssh"
+    node.vm.network "private_network", ip: "192.168.1.15"
+  end
+
   config.vm.define :web1 do |node|
     config.vm.box = "eighty8/ubuntu16.04-min"
     node.vm.network :forwarded_port, guest: 22, host: 2020, id: "ssh"
-    node.vm.network :forwarded_port, guest: 80, host: 8020, id: "http"
     node.vm.network "private_network", ip: "192.168.1.20"
   end
 
   config.vm.define :web2 do |node|
     config.vm.box = "eighty8/ubuntu16.04-min"
     node.vm.network :forwarded_port, guest: 22, host: 2021, id: "ssh"
-    node.vm.network :forwarded_port, guest: 80, host: 8021, id: "http"
     node.vm.network "private_network", ip: "192.168.1.21"
   end
 
