@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define :dbm do |node|
-    config.vm.box = "eighty8/ubuntu16.04-min"
+    node.vm.box = "eighty8/ubuntu16.04-min"
     node.vm.network :forwarded_port, guest: 22, host: 2040, id: "ssh"
     node.vm.network "private_network", ip: "192.168.1.40"
   end
