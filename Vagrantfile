@@ -15,13 +15,13 @@ Vagrant.configure("2") do |config|
     node.vm.network "private_network", ip: "192.168.1.10"
   end
 
-  config.vm.define :dev_web1 do |node|
+  config.vm.define :dev_web do |node|
     node.vm.box = "eighty8/ubuntu16.04-min"
     node.vm.network :forwarded_port, guest: 22, host: 2015, id: "ssh"
     node.vm.network "private_network", ip: "192.168.1.15"
   end
 
-  config.vm.define :dev_web2 do |node|
+  config.vm.define :stg_web do |node|
     node.vm.box = "eighty8/ubuntu16.04-min"
     node.vm.network :forwarded_port, guest: 22, host: 2016, id: "ssh"
     node.vm.network "private_network", ip: "192.168.1.16"
